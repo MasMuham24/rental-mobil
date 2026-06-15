@@ -1,0 +1,354 @@
+/* ==========================================
+   RentCar - BMW-Inspired Premium Dark Theme
+   ========================================== */
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar - Dark & Minimal */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1c69d4;
+}
+
+/* Navbar States */
+#navbar {
+  background: transparent;
+}
+
+.navbar-scrolled {
+  background: rgba(13, 13, 13, 0.95) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Hero Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Car Card Filter Animation */
+.car-card {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.car-card.hidden-card {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  position: absolute;
+}
+
+.car-card.show-card {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  position: relative;
+}
+
+/* Filter Button Active */
+.filter-btn.active {
+  background-color: #1c69d4;
+  border-color: #1c69d4;
+  color: #ffffff;
+}
+
+/* FAQ Accordion */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-content.show {
+  max-height: 300px;
+}
+
+.faq-item.active .fa-plus {
+  transform: rotate(45deg);
+}
+
+.faq-item.active {
+  background-color: #262626;
+}
+
+/* Back to Top */
+#backToTop.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Mobile Menu */
+#mobileMenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#mobileMenu.open {
+  max-height: 500px;
+}
+
+/* Form input color scheme for dark bg */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+select option {
+  background: #1a1a1a;
+  color: #f2f2f2;
+}
+
+/* Selection */
+::selection {
+  background-color: #1c69d4;
+  color: #ffffff;
+}
+
+/* Focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 1px solid #1c69d4;
+  outline-offset: 2px;
+}
+
+/* Image hover overlay for car cards */
+.car-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(26, 26, 26, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.car-card:hover::after {
+  opacity: 1;
+}
+
+/* SweetAlert2 Dark Theme Override */
+.swal2-popup {
+  background: #1a1a1a !important;
+  color: #f2f2f2 !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 0 !important;
+}
+
+.swal2-title {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.swal2-html-container {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.swal2-confirm {
+  border-radius: 0 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-size: 13px !important;
+}
+
+.swal2-cancel {
+  border-radius: 0 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-size: 13px !important;
+}
+
+/* Additional Animations */
+
+/* Float Animation - untuk stat counter */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse Animation - untuk badge */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(28, 105, 212, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(28, 105, 212, 0);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Slide In From Left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Slide In From Right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Scale Up Animation */
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-up {
+  animation: scaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Bounce Animation */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bounce-in {
+  animation: bounce-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Glow on hover untuk buttons */
+.btn-glow:hover {
+  box-shadow: 0 0 20px rgba(28, 105, 212, 0.3),
+              inset 0 0 20px rgba(28, 105, 212, 0.1);
+}
+
+/* Car card entrance animation */
+.car-card.show-card {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Icon bounce on hover */
+.icon-bounce:hover i {
+  animation: iconBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Gradient text shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #f2f2f2, #1c69d4, #f2f2f2);
+  background-size: 1000px 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s infinite;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .animate-fade-in h1 {
+    font-size: 2.5rem;
+  }
+}

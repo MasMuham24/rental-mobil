@@ -1,0 +1,1468 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RentCar - Premium Car Rental</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bmw: {
+                blue: "#1c69d4",
+                dark: "#0d0d0d",
+                gray: "#1a1a1a",
+                mid: "#262626",
+                light: "#333333",
+                silver: "#8c8c8c",
+                white: "#f2f2f2",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "Helvetica Neue", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="font-sans bg-bmw-dark text-bmw-white antialiased">
+    <!-- Navbar -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+    >
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <div class="flex items-center justify-between h-20">
+          <!-- Logo -->
+          <a href="#" class="flex items-center gap-3 group">
+            <div
+              class="w-10 h-10 rounded-full border-2 border-white/80 flex items-center justify-center group-hover:border-bmw-blue transition-colors duration-300"
+            >
+              <span class="text-xs font-black tracking-tighter leading-none"
+                >RC</span
+              >
+            </div>
+            <span class="text-lg font-bold tracking-wide hidden sm:block"
+              >RENTCAR</span
+            >
+          </a>
+
+          <!-- Desktop Menu -->
+          <div class="hidden lg:flex items-center gap-10">
+            <a
+              href="#beranda"
+              class="nav-link text-sm font-medium text-white/70 hover:text-white tracking-wide uppercase transition-colors duration-300"
+              >Beranda</a
+            >
+            <a
+              href="#armada"
+              class="nav-link text-sm font-medium text-white/70 hover:text-white tracking-wide uppercase transition-colors duration-300"
+              >Armada</a
+            >
+            <a
+              href="#layanan"
+              class="nav-link text-sm font-medium text-white/70 hover:text-white tracking-wide uppercase transition-colors duration-300"
+              >Layanan</a
+            >
+            <a
+              href="#testimoni"
+              class="nav-link text-sm font-medium text-white/70 hover:text-white tracking-wide uppercase transition-colors duration-300"
+              >Testimoni</a
+            >
+            <a
+              href="#faq"
+              class="nav-link text-sm font-medium text-white/70 hover:text-white tracking-wide uppercase transition-colors duration-300"
+              >FAQ</a
+            >
+            <a
+              href="#kontak"
+              class="nav-link text-sm font-medium text-white/70 hover:text-white tracking-wide uppercase transition-colors duration-300"
+              >Kontak</a
+            >
+          </div>
+
+          <!-- CTA + Hamburger -->
+          <div class="flex items-center gap-4">
+            <a
+              href="#booking"
+              class="hidden md:inline-flex items-center gap-2 bg-bmw-blue hover:bg-blue-600 text-white text-sm font-semibold px-6 py-2.5 transition-all duration-300 hover:shadow-lg hover:shadow-bmw-blue/20"
+            >
+              Reservasi
+            </a>
+            <button
+              id="menuToggle"
+              class="lg:hidden text-white text-xl focus:outline-none w-10 h-10 flex items-center justify-center"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobileMenu"
+        class="hidden lg:hidden bg-bmw-dark/98 backdrop-blur-xl border-t border-white/5"
+      >
+        <div class="px-6 py-6 space-y-1">
+          <a
+            href="#beranda"
+            class="mobile-link block py-3 text-white/60 hover:text-white text-sm font-medium uppercase tracking-wider border-b border-white/5 transition"
+            >Beranda</a
+          >
+          <a
+            href="#armada"
+            class="mobile-link block py-3 text-white/60 hover:text-white text-sm font-medium uppercase tracking-wider border-b border-white/5 transition"
+            >Armada</a
+          >
+          <a
+            href="#layanan"
+            class="mobile-link block py-3 text-white/60 hover:text-white text-sm font-medium uppercase tracking-wider border-b border-white/5 transition"
+            >Layanan</a
+          >
+          <a
+            href="#testimoni"
+            class="mobile-link block py-3 text-white/60 hover:text-white text-sm font-medium uppercase tracking-wider border-b border-white/5 transition"
+            >Testimoni</a
+          >
+          <a
+            href="#faq"
+            class="mobile-link block py-3 text-white/60 hover:text-white text-sm font-medium uppercase tracking-wider border-b border-white/5 transition"
+            >FAQ</a
+          >
+          <a
+            href="#kontak"
+            class="mobile-link block py-3 text-white/60 hover:text-white text-sm font-medium uppercase tracking-wider border-b border-white/5 transition"
+            >Kontak</a
+          >
+          <a
+            href="#booking"
+            class="mobile-link block mt-4 bg-bmw-blue text-white text-sm font-semibold py-3 text-center uppercase tracking-wider transition hover:bg-blue-600"
+            >Reservasi</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="beranda"
+      class="relative min-h-screen flex items-center pt-8 overflow-hidden"
+    >
+      <!-- Background Image -->
+      <div class="absolute inset-0">
+        <div
+          class="absolute inset-0 bg-bmw-dark"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85&quot;);
+            background-size: cover;
+            background-position: center 40%;
+          "
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-bmw-dark via-bmw-dark/60 to-transparent"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-bmw-dark/80 to-transparent"
+        ></div>
+      </div>
+
+      <div
+        class="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-12 py-24 w-full"
+      >
+        <div class="max-w-3xl animate-fade-in">
+          <p
+            class="text-bmw-blue text-sm font-semibold uppercase tracking-[0.3em] mb-4"
+          >
+            Premium Car Rental
+          </p>
+          <h1
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-black text-white leading-[0.95] mb-6 tracking-tight"
+          >
+            RASAKAN<br />KEMEWAHAN<br />BERKENDARA.
+          </h1>
+          <p
+            class="text-white/50 text-base md:text-lg max-w-lg mb-10 font-light leading-relaxed"
+          >
+            Armada premium pilihan terbaik. Layanan tanpa kompromi. Pengalaman
+            berkendara yang tak terlupakan.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#booking"
+              class="inline-flex items-center justify-center gap-2 bg-bmw-blue hover:bg-blue-600 text-white font-semibold px-8 py-4 text-sm uppercase tracking-wider transition-all duration-300 hover:shadow-xl hover:shadow-bmw-blue/20"
+            >
+              <span>Reservasi Sekarang</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+            <a
+              href="#armada"
+              class="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white text-white font-semibold px-8 py-4 text-sm uppercase tracking-wider transition-all duration-300"
+            >
+              <span>Lihat Armada</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-16 flex flex-wrap gap-12 md:gap-20">
+          <div>
+            <div class="text-3xl md:text-4xl font-black text-white" id="stat1">
+              0
+            </div>
+            <div class="text-white/40 text-xs uppercase tracking-wider mt-1">
+              Unit Armada
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl md:text-4xl font-black text-white" id="stat2">
+              0
+            </div>
+            <div class="text-white/40 text-xs uppercase tracking-wider mt-1">
+              Pelanggan
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl md:text-4xl font-black text-white" id="stat3">
+              0
+            </div>
+            <div class="text-white/40 text-xs uppercase tracking-wider mt-1">
+              Tahun Pengalaman
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl md:text-4xl font-black text-white">24/7</div>
+            <div class="text-white/40 text-xs uppercase tracking-wider mt-1">
+              Layanan
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div
+        class="absolute bottom-8 right-6 lg:right-12 flex flex-col items-center gap-2 animate-pulse"
+      >
+        <span
+          class="text-white/30 text-[10px] uppercase tracking-widest rotate-90 origin-center translate-y-6"
+          >Scroll</span
+        >
+        <div
+          class="w-px h-12 bg-gradient-to-b from-white/50 to-transparent mt-8"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="booking" class="bg-bmw-gray border-t border-white/5">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16">
+        <div class="mb-10">
+          <p
+            class="text-bmw-blue text-xs font-semibold uppercase tracking-[0.3em] mb-3"
+          >
+            Reservasi Online
+          </p>
+          <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight">
+            Temukan Mobil Anda.
+          </h2>
+        </div>
+        <form
+          id="bookingForm"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          <div>
+            <label
+              class="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-2"
+              >Lokasi Pengambilan</label
+            >
+            <select
+              name="lokasi"
+              class="w-full px-4 py-4 bg-bmw-mid border border-white/10 text-white text-sm focus:border-bmw-blue focus:outline-none transition-colors duration-300 appearance-none cursor-pointer"
+            >
+              <option value="">Pilih Lokasi</option>
+              <option value="jakarta">Jakarta</option>
+              <option value="bandung">Bandung</option>
+              <option value="surabaya">Surabaya</option>
+              <option value="yogyakarta">Yogyakarta</option>
+              <option value="bali">Bali</option>
+            </select>
+          </div>
+          <div>
+            <label
+              class="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-2"
+              >Tanggal Sewa</label
+            >
+            <input
+              type="date"
+              name="tanggalSewa"
+              class="w-full px-4 py-4 bg-bmw-mid border border-white/10 text-white text-sm focus:border-bmw-blue focus:outline-none transition-colors duration-300"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-2"
+              >Tanggal Kembali</label
+            >
+            <input
+              type="date"
+              name="tanggalKembali"
+              class="w-full px-4 py-4 bg-bmw-mid border border-white/10 text-white text-sm focus:border-bmw-blue focus:outline-none transition-colors duration-300"
+            />
+          </div>
+          <div class="flex items-end">
+            <button
+              type="submit"
+              class="w-full bg-bmw-blue hover:bg-blue-600 text-white font-semibold py-4 text-sm uppercase tracking-wider transition-all duration-300 hover:shadow-lg hover:shadow-bmw-blue/20 flex items-center justify-center gap-2"
+            >
+              <span>Cari Mobil</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Armada / Daftar Mobil -->
+    <section id="armada" class="bg-bmw-dark py-24">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <div
+          class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6"
+        >
+          <div>
+            <p
+              class="text-bmw-blue text-xs font-semibold uppercase tracking-[0.3em] mb-3"
+            >
+              Armada Kami
+            </p>
+            <h2
+              class="text-3xl md:text-5xl font-black text-white tracking-tight"
+            >
+              Koleksi Premium.
+            </h2>
+          </div>
+          <!-- Filter Buttons -->
+          <div class="flex flex-wrap gap-2">
+            <button
+              class="filter-btn active text-sm font-medium px-5 py-2 border transition-all duration-300"
+              data-filter="all"
+            >
+              Semua
+            </button>
+            <button
+              class="filter-btn text-sm font-medium px-5 py-2 border border-white/10 text-white/50 hover:border-white/30 hover:text-white transition-all duration-300"
+              data-filter="suv"
+            >
+              SUV
+            </button>
+            <button
+              class="filter-btn text-sm font-medium px-5 py-2 border border-white/10 text-white/50 hover:border-white/30 hover:text-white transition-all duration-300"
+              data-filter="sedan"
+            >
+              Sedan
+            </button>
+            <button
+              class="filter-btn text-sm font-medium px-5 py-2 border border-white/10 text-white/50 hover:border-white/30 hover:text-white transition-all duration-300"
+              data-filter="mpv"
+            >
+              MPV
+            </button>
+            <button
+              class="filter-btn text-sm font-medium px-5 py-2 border border-white/10 text-white/50 hover:border-white/30 hover:text-white transition-all duration-300"
+              data-filter="sport"
+            >
+              Sport
+            </button>
+          </div>
+        </div>
+
+        <!-- Car Cards Grid -->
+        <div
+          id="carGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5"
+        >
+          <!-- Car 1 -->
+          <div
+            class="car-card bg-bmw-gray group cursor-pointer"
+            data-category="mpv"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/2022_Toyota_Avanza_1.5_G_Toyota_Safety_Sense_W101RE_%2820220403%29.jpg/960px-2022_Toyota_Avanza_1.5_G_Toyota_Safety_Sense_W101RE_%2820220403%29.jpg"
+                alt="Toyota Avanza"
+                class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-bmw-gray via-transparent to-transparent"
+              ></div>
+              <span
+                class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest text-bmw-blue bg-bmw-blue/10 px-3 py-1 border border-bmw-blue/20"
+                >Tersedia</span
+              >
+            </div>
+            <div class="p-6">
+              <div
+                class="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-1"
+              >
+                MPV
+              </div>
+              <h3 class="text-lg font-bold text-white mb-3">Toyota Avanza</h3>
+              <div class="flex items-center gap-4 text-xs text-white/40 mb-5">
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gear"></i> Matic</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gas-pump"></i> Bensin</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-users"></i> 7</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-between pt-4 border-t border-white/5"
+              >
+                <div>
+                  <span class="text-xl font-black text-white">Rp 350K</span>
+                  <span class="text-white/30 text-xs ml-1">/hari</span>
+                </div>
+                <button
+                  onclick="sewaMobil('Toyota Avanza', 'Rp 350.000')"
+                  class="text-bmw-blue hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors duration-300 flex items-center gap-1 group/btn"
+                >
+                  Detail
+                  <i
+                    class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Car 2 -->
+          <div
+            class="car-card bg-bmw-gray group cursor-pointer"
+            data-category="suv"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/2015_Toyota_Fortuner_%28New_Zealand%29.jpg/960px-2015_Toyota_Fortuner_%28New_Zealand%29.jpg"
+                alt="Toyota Fortuner"
+                class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-bmw-gray via-transparent to-transparent"
+              ></div>
+              <span
+                class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest text-bmw-blue bg-bmw-blue/10 px-3 py-1 border border-bmw-blue/20"
+                >Tersedia</span
+              >
+            </div>
+            <div class="p-6">
+              <div
+                class="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-1"
+              >
+                SUV
+              </div>
+              <h3 class="text-lg font-bold text-white mb-3">Toyota Fortuner</h3>
+              <div class="flex items-center gap-4 text-xs text-white/40 mb-5">
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gear"></i> Matic</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gas-pump"></i> Diesel</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-users"></i> 7</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-between pt-4 border-t border-white/5"
+              >
+                <div>
+                  <span class="text-xl font-black text-white">Rp 900K</span>
+                  <span class="text-white/30 text-xs ml-1">/hari</span>
+                </div>
+                <button
+                  onclick="sewaMobil('Toyota Fortuner', 'Rp 900.000')"
+                  class="text-bmw-blue hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors duration-300 flex items-center gap-1 group/btn"
+                >
+                  Detail
+                  <i
+                    class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Car 3 -->
+          <div
+            class="car-card bg-bmw-gray group cursor-pointer"
+            data-category="sedan"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Honda_Civic_e-HEV_Sport_%28XI%29_%E2%80%93_f_30062024.jpg/960px-Honda_Civic_e-HEV_Sport_%28XI%29_%E2%80%93_f_30062024.jpg"
+                alt="Honda Civic"
+                class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-bmw-gray via-transparent to-transparent"
+              ></div>
+              <span
+                class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest text-bmw-blue bg-bmw-blue/10 px-3 py-1 border border-bmw-blue/20"
+                >Tersedia</span
+              >
+            </div>
+            <div class="p-6">
+              <div
+                class="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-1"
+              >
+                Sedan
+              </div>
+              <h3 class="text-lg font-bold text-white mb-3">Honda Civic</h3>
+              <div class="flex items-center gap-4 text-xs text-white/40 mb-5">
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gear"></i> Matic</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gas-pump"></i> Bensin</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-users"></i> 5</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-between pt-4 border-t border-white/5"
+              >
+                <div>
+                  <span class="text-xl font-black text-white">Rp 600K</span>
+                  <span class="text-white/30 text-xs ml-1">/hari</span>
+                </div>
+                <button
+                  onclick="sewaMobil('Honda Civic', 'Rp 600.000')"
+                  class="text-bmw-blue hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors duration-300 flex items-center gap-1 group/btn"
+                >
+                  Detail
+                  <i
+                    class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Car 4 -->
+          <div
+            class="car-card bg-bmw-gray group cursor-pointer"
+            data-category="mpv"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Mitsubishi_Xpander_NC1W_FL2_1.5_GLS_Quartz_White_Pearl_01.jpg/960px-Mitsubishi_Xpander_NC1W_FL2_1.5_GLS_Quartz_White_Pearl_01.jpg"
+                alt="Mitsubishi Xpander"
+                class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-bmw-gray via-transparent to-transparent"
+              ></div>
+              <span
+                class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest text-bmw-blue bg-bmw-blue/10 px-3 py-1 border border-bmw-blue/20"
+                >Tersedia</span
+              >
+            </div>
+            <div class="p-6">
+              <div
+                class="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-1"
+              >
+                MPV
+              </div>
+              <h3 class="text-lg font-bold text-white mb-3">
+                Mitsubishi Xpander
+              </h3>
+              <div class="flex items-center gap-4 text-xs text-white/40 mb-5">
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gear"></i> Matic</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gas-pump"></i> Bensin</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-users"></i> 7</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-between pt-4 border-t border-white/5"
+              >
+                <div>
+                  <span class="text-xl font-black text-white">Rp 400K</span>
+                  <span class="text-white/30 text-xs ml-1">/hari</span>
+                </div>
+                <button
+                  onclick="sewaMobil('Mitsubishi Xpander', 'Rp 400.000')"
+                  class="text-bmw-blue hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors duration-300 flex items-center gap-1 group/btn"
+                >
+                  Detail
+                  <i
+                    class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Car 5 -->
+          <div
+            class="car-card bg-bmw-gray group cursor-pointer"
+            data-category="sport"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2023_Honda_HR-V_Advance_i-MMD_CVT_1.5.jpg/960px-2023_Honda_HR-V_Advance_i-MMD_CVT_1.5.jpg"
+                alt="Honda HR-V"
+                class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-bmw-gray via-transparent to-transparent"
+              ></div>
+              <span
+                class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest text-bmw-blue bg-bmw-blue/10 px-3 py-1 border border-bmw-blue/20"
+                >Tersedia</span
+              >
+            </div>
+            <div class="p-6">
+              <div
+                class="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-1"
+              >
+                Sport
+              </div>
+              <h3 class="text-lg font-bold text-white mb-3">Honda HR-V</h3>
+              <div class="flex items-center gap-4 text-xs text-white/40 mb-5">
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gear"></i> Matic</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gas-pump"></i> Bensin</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-users"></i> 5</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-between pt-4 border-t border-white/5"
+              >
+                <div>
+                  <span class="text-xl font-black text-white">Rp 550K</span>
+                  <span class="text-white/30 text-xs ml-1">/hari</span>
+                </div>
+                <button
+                  onclick="sewaMobil('Honda HR-V', 'Rp 550.000')"
+                  class="text-bmw-blue hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors duration-300 flex items-center gap-1 group/btn"
+                >
+                  Detail
+                  <i
+                    class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Car 6 -->
+          <div
+            class="car-card bg-bmw-gray group cursor-pointer"
+            data-category="suv"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Mitsubishi_Pajero_Sport_%283rd_generation%29_1X7A0409.jpg/960px-Mitsubishi_Pajero_Sport_%283rd_generation%29_1X7A0409.jpg"
+                alt="Pajero Sport"
+                class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-bmw-gray via-transparent to-transparent"
+              ></div>
+              <span
+                class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest text-red-400 bg-red-500/10 px-3 py-1 border border-red-500/20"
+                >Terbatas</span
+              >
+            </div>
+            <div class="p-6">
+              <div
+                class="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-1"
+              >
+                SUV
+              </div>
+              <h3 class="text-lg font-bold text-white mb-3">Pajero Sport</h3>
+              <div class="flex items-center gap-4 text-xs text-white/40 mb-5">
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gear"></i> Matic</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gas-pump"></i> Diesel</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-users"></i> 7</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-between pt-4 border-t border-white/5"
+              >
+                <div>
+                  <span class="text-xl font-black text-white">Rp 950K</span>
+                  <span class="text-white/30 text-xs ml-1">/hari</span>
+                </div>
+                <button
+                  onclick="sewaMobil('Pajero Sport', 'Rp 950.000')"
+                  class="text-bmw-blue hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors duration-300 flex items-center gap-1 group/btn"
+                >
+                  Detail
+                  <i
+                    class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Car 7 -->
+          <div
+            class="car-card bg-bmw-gray group cursor-pointer"
+            data-category="sedan"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/2018_Toyota_Camry_%28ASV70R%29_Ascent_sedan_%282018-08-27%29_01.jpg/960px-2018_Toyota_Camry_%28ASV70R%29_Ascent_sedan_%282018-08-27%29_01.jpg"
+                alt="Toyota Camry"
+                class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-bmw-gray via-transparent to-transparent"
+              ></div>
+              <span
+                class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest text-bmw-blue bg-bmw-blue/10 px-3 py-1 border border-bmw-blue/20"
+                >Tersedia</span
+              >
+            </div>
+            <div class="p-6">
+              <div
+                class="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-1"
+              >
+                Sedan
+              </div>
+              <h3 class="text-lg font-bold text-white mb-3">Toyota Camry</h3>
+              <div class="flex items-center gap-4 text-xs text-white/40 mb-5">
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gear"></i> Matic</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gas-pump"></i> Bensin</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-users"></i> 5</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-between pt-4 border-t border-white/5"
+              >
+                <div>
+                  <span class="text-xl font-black text-white">Rp 750K</span>
+                  <span class="text-white/30 text-xs ml-1">/hari</span>
+                </div>
+                <button
+                  onclick="sewaMobil('Toyota Camry', 'Rp 750.000')"
+                  class="text-bmw-blue hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors duration-300 flex items-center gap-1 group/btn"
+                >
+                  Detail
+                  <i
+                    class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Car 8 -->
+          <div
+            class="car-card bg-bmw-gray group cursor-pointer"
+            data-category="mpv"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Toyota_Innova_Zenix_2.0_V_%28III%29_%E2%80%93_f_22032025.jpg/960px-Toyota_Innova_Zenix_2.0_V_%28III%29_%E2%80%93_f_22032025.jpg"
+                alt="Toyota Innova Reborn"
+                class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-bmw-gray via-transparent to-transparent"
+              ></div>
+              <span
+                class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest text-bmw-blue bg-bmw-blue/10 px-3 py-1 border border-bmw-blue/20"
+                >Tersedia</span
+              >
+            </div>
+            <div class="p-6">
+              <div
+                class="text-[10px] font-semibold uppercase tracking-widest text-white/30 mb-1"
+              >
+                MPV
+              </div>
+              <h3 class="text-lg font-bold text-white mb-3">
+                Toyota Innova Reborn
+              </h3>
+              <div class="flex items-center gap-4 text-xs text-white/40 mb-5">
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gear"></i> Matic</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-gas-pump"></i> Diesel</span
+                >
+                <span class="flex items-center gap-1"
+                  ><i class="fa-solid fa-users"></i> 7</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-between pt-4 border-t border-white/5"
+              >
+                <div>
+                  <span class="text-xl font-black text-white">Rp 500K</span>
+                  <span class="text-white/30 text-xs ml-1">/hari</span>
+                </div>
+                <button
+                  onclick="sewaMobil('Toyota Innova Reborn', 'Rp 500.000')"
+                  class="text-bmw-blue hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors duration-300 flex items-center gap-1 group/btn"
+                >
+                  Detail
+                  <i
+                    class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"
+                  ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layanan / Keunggulan -->
+    <section id="layanan" class="bg-bmw-gray py-24 border-t border-white/5">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center"
+        >
+          <!-- Left: Text -->
+          <div>
+            <p
+              class="text-bmw-blue text-xs font-semibold uppercase tracking-[0.3em] mb-3"
+            >
+              Mengapa Kami
+            </p>
+            <h2
+              class="text-3xl md:text-5xl font-black text-white tracking-tight mb-6"
+            >
+              Standar Tertinggi<br />Dalam Setiap Detail.
+            </h2>
+            <p class="text-white/40 text-base leading-relaxed mb-12 max-w-lg">
+              Kami tidak hanya menyewakan mobil. Kami memberikan pengalaman
+              berkendara premium dengan pelayanan tanpa kompromi.
+            </p>
+
+            <div class="space-y-8">
+              <div
+                class="flex gap-5 group bounce-in"
+                style="animation-delay: 0s"
+              >
+                <div
+                  class="w-14 h-14 min-w-[56px] bg-bmw-mid border border-white/5 flex items-center justify-center group-hover:border-bmw-blue/50 transition-colors duration-300 icon-bounce"
+                >
+                  <i
+                    class="fa-solid fa-shield-halved text-bmw-blue text-lg"
+                  ></i>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold mb-1">Asuransi Lengkap</h3>
+                  <p class="text-white/40 text-sm leading-relaxed">
+                    Seluruh armada dilindungi asuransi all-risk untuk ketenangan
+                    perjalanan Anda.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex gap-5 group bounce-in"
+                style="animation-delay: 0.15s"
+              >
+                <div
+                  class="w-14 h-14 min-w-[56px] bg-bmw-mid border border-white/5 flex items-center justify-center group-hover:border-bmw-blue/50 transition-colors duration-300 icon-bounce"
+                >
+                  <i class="fa-solid fa-clock text-bmw-blue text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold mb-1">Layanan 24/7</h3>
+                  <p class="text-white/40 text-sm leading-relaxed">
+                    Tim support kami siap membantu kapan saja, di mana saja.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex gap-5 group bounce-in"
+                style="animation-delay: 0.3s"
+              >
+                <div
+                  class="w-14 h-14 min-w-[56px] bg-bmw-mid border border-white/5 flex items-center justify-center group-hover:border-bmw-blue/50 transition-colors duration-300 icon-bounce"
+                >
+                  <i class="fa-solid fa-truck-fast text-bmw-blue text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold mb-1">Antar Jemput Gratis</h3>
+                  <p class="text-white/40 text-sm leading-relaxed">
+                    Layanan antar jemput mobil tanpa biaya tambahan di area
+                    tertentu.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="flex gap-5 group bounce-in"
+                style="animation-delay: 0.45s"
+              >
+                <div
+                  class="w-14 h-14 min-w-[56px] bg-bmw-mid border border-white/5 flex items-center justify-center group-hover:border-bmw-blue/50 transition-colors duration-300 icon-bounce"
+                >
+                  <i class="fa-solid fa-car text-bmw-blue text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-white font-bold mb-1">Armada Terawat</h3>
+                  <p class="text-white/40 text-sm leading-relaxed">
+                    Perawatan berkala untuk memastikan kenyamanan dan keamanan
+                    berkendara.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Image -->
+          <div class="relative">
+            <div class="aspect-[4/5] overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=85"
+                alt="Premium Car"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div
+              class="absolute -bottom-6 -left-6 bg-bmw-blue p-8 hidden lg:block"
+            >
+              <div class="text-4xl font-black text-white">6+</div>
+              <div class="text-white/70 text-sm font-medium mt-1">
+                Tahun<br />Pengalaman
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section id="testimoni" class="bg-bmw-dark py-24 border-t border-white/5">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <div class="text-center mb-16">
+          <p
+            class="text-bmw-blue text-xs font-semibold uppercase tracking-[0.3em] mb-3"
+          >
+            Testimoni
+          </p>
+          <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight">
+            Kata Mereka.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5">
+          <!-- Testimoni 1 -->
+          <div
+            class="bg-bmw-gray p-8 md:p-10 group hover:bg-bmw-mid transition-colors duration-500 scale-up"
+            style="animation-delay: 0s"
+          >
+            <div class="flex items-center gap-1 mb-6">
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+            </div>
+            <p class="text-white/60 text-sm leading-relaxed mb-8">
+              "Pelayanan sangat memuaskan. Mobilnya bersih, terawat, dan proses
+              sewanya sangat cepat. Sangat direkomendasikan untuk perjalanan
+              keluarga."
+            </p>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center"
+              >
+                <span class="text-xs font-bold text-white/60">AR</span>
+              </div>
+              <div>
+                <h4 class="text-white text-sm font-semibold">Ahmad Rizky</h4>
+                <p class="text-white/30 text-xs">Pelanggan Tetap</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimoni 2 -->
+          <div
+            class="bg-bmw-gray p-8 md:p-10 group hover:bg-bmw-mid transition-colors duration-500 scale-up"
+            style="animation-delay: 0.2s"
+          >
+            <div class="flex items-center gap-1 mb-6">
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+            </div>
+            <p class="text-white/60 text-sm leading-relaxed mb-8">
+              "Harga sangat bersaing dibanding kompetitor lain. Mobil yang
+              disewa sesuai dengan deskripsi. Layanan antar jemput sangat
+              membantu!"
+            </p>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center"
+              >
+                <span class="text-xs font-bold text-white/60">SN</span>
+              </div>
+              <div>
+                <h4 class="text-white text-sm font-semibold">Siti Nurhaliza</h4>
+                <p class="text-white/30 text-xs">Wisatawan</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimoni 3 -->
+          <div
+            class="bg-bmw-gray p-8 md:p-10 group hover:bg-bmw-mid transition-colors duration-500 scale-up"
+            style="animation-delay: 0.4s"
+          >
+            <div class="flex items-center gap-1 mb-6">
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-solid fa-star text-bmw-blue text-xs"></i>
+              <i class="fa-regular fa-star text-white/20 text-xs"></i>
+            </div>
+            <p class="text-white/60 text-sm leading-relaxed mb-8">
+              "Sudah 3 kali sewa di RentCar, selalu puas. Support 24 jam
+              benar-benar responsif. Cocok untuk kebutuhan bisnis dan pribadi."
+            </p>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center"
+              >
+                <span class="text-xs font-bold text-white/60">BS</span>
+              </div>
+              <div>
+                <h4 class="text-white text-sm font-semibold">Budi Santoso</h4>
+                <p class="text-white/30 text-xs">Pengusaha</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="bg-bmw-gray py-24 border-t border-white/5">
+      <div class="max-w-3xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-16">
+          <p
+            class="text-bmw-blue text-xs font-semibold uppercase tracking-[0.3em] mb-3"
+          >
+            FAQ
+          </p>
+          <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight">
+            Pertanyaan Umum.
+          </h2>
+        </div>
+
+        <div class="space-y-px">
+          <div class="faq-item bg-bmw-mid">
+            <button
+              class="faq-toggle w-full flex items-center justify-between p-6 text-left group transition-colors duration-300 hover:bg-bmw-light"
+            >
+              <span class="font-semibold text-white text-sm pr-4"
+                >Apa saja syarat untuk menyewa mobil?</span
+              >
+              <i
+                class="fa-solid fa-plus text-bmw-blue text-xs transition-transform duration-300 min-w-[16px]"
+              ></i>
+            </button>
+            <div class="faq-content hidden">
+              <div class="px-6 pb-6">
+                <p class="text-white/40 text-sm leading-relaxed">
+                  Syarat sewa mobil meliputi: KTP/SIM yang masih berlaku,
+                  deposit sesuai jenis mobil, dan mengisi formulir penyewaan.
+                  Untuk sewa lepas kunci, diperlukan SIM A yang masih aktif.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-bmw-mid">
+            <button
+              class="faq-toggle w-full flex items-center justify-between p-6 text-left group transition-colors duration-300 hover:bg-bmw-light"
+            >
+              <span class="font-semibold text-white text-sm pr-4"
+                >Metode pembayaran apa saja yang tersedia?</span
+              >
+              <i
+                class="fa-solid fa-plus text-bmw-blue text-xs transition-transform duration-300 min-w-[16px]"
+              ></i>
+            </button>
+            <div class="faq-content hidden">
+              <div class="px-6 pb-6">
+                <p class="text-white/40 text-sm leading-relaxed">
+                  Kami menerima pembayaran melalui transfer bank (BCA, Mandiri,
+                  BNI, BRI), e-wallet (GoPay, OVO, Dana), kartu kredit/debit,
+                  dan pembayaran tunai di kantor kami.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-bmw-mid">
+            <button
+              class="faq-toggle w-full flex items-center justify-between p-6 text-left group transition-colors duration-300 hover:bg-bmw-light"
+            >
+              <span class="font-semibold text-white text-sm pr-4"
+                >Apakah bisa sewa mobil dengan sopir?</span
+              >
+              <i
+                class="fa-solid fa-plus text-bmw-blue text-xs transition-transform duration-300 min-w-[16px]"
+              ></i>
+            </button>
+            <div class="faq-content hidden">
+              <div class="px-6 pb-6">
+                <p class="text-white/40 text-sm leading-relaxed">
+                  Ya, kami menyediakan layanan sewa mobil dengan sopir
+                  profesional yang berpengalaman. Biaya sopir sudah termasuk BBM
+                  dalam kota. Hubungi kami untuk informasi lebih lanjut.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-bmw-mid">
+            <button
+              class="faq-toggle w-full flex items-center justify-between p-6 text-left group transition-colors duration-300 hover:bg-bmw-light"
+            >
+              <span class="font-semibold text-white text-sm pr-4"
+                >Bagaimana kebijakan pembatalan?</span
+              >
+              <i
+                class="fa-solid fa-plus text-bmw-blue text-xs transition-transform duration-300 min-w-[16px]"
+              ></i>
+            </button>
+            <div class="faq-content hidden">
+              <div class="px-6 pb-6">
+                <p class="text-white/40 text-sm leading-relaxed">
+                  Pembatalan H-2 sebelum tanggal sewa akan mendapatkan refund
+                  penuh. Pembatalan H-1 dikenakan biaya 50%. Pembatalan di hari
+                  H tidak dapat di-refund.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item bg-bmw-mid">
+            <button
+              class="faq-toggle w-full flex items-center justify-between p-6 text-left group transition-colors duration-300 hover:bg-bmw-light"
+            >
+              <span class="font-semibold text-white text-sm pr-4"
+                >Apakah sudah termasuk asuransi?</span
+              >
+              <i
+                class="fa-solid fa-plus text-bmw-blue text-xs transition-transform duration-300 min-w-[16px]"
+              ></i>
+            </button>
+            <div class="faq-content hidden">
+              <div class="px-6 pb-6">
+                <p class="text-white/40 text-sm leading-relaxed">
+                  Ya, seluruh mobil kami sudah dilindungi asuransi all-risk.
+                  Namun, penyewa tetap bertanggung jawab atas kerusakan akibat
+                  kelalaian. Detail lengkap ada di perjanjian sewa.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative py-32 overflow-hidden border-t border-white/5">
+      <div class="absolute inset-0">
+        <div
+          class="absolute inset-0 bg-bmw-dark"
+          style="
+            background-image: url(&quot;https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=80&quot;);
+            background-size: cover;
+            background-position: center;
+          "
+        ></div>
+        <div class="absolute inset-0 bg-bmw-dark/85"></div>
+      </div>
+      <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <p
+          class="text-bmw-blue text-xs font-semibold uppercase tracking-[0.3em] mb-4"
+        >
+          Mulai Perjalanan
+        </p>
+        <h2
+          class="text-4xl md:text-6xl font-black text-white tracking-tight mb-6"
+        >
+          Siap Berkendara?
+        </h2>
+        <p
+          class="text-white/40 text-base md:text-lg mb-12 max-w-xl mx-auto font-light"
+        >
+          Hubungi tim kami dan dapatkan penawaran terbaik. Kami siap melayani
+          Anda 24/7.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://wa.me/6281234567890"
+            target="_blank"
+            class="inline-flex items-center justify-center gap-3 bg-white text-bmw-dark font-semibold px-8 py-4 text-sm uppercase tracking-wider transition-all duration-300 hover:bg-bmw-blue hover:text-white btn-glow bounce-in"
+            style="animation-delay: 0s"
+          >
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Chat WhatsApp</span>
+          </a>
+          <a
+            href="tel:+6281234567890"
+            class="inline-flex items-center justify-center gap-3 border border-white/20 hover:border-white text-white font-semibold px-8 py-4 text-sm uppercase tracking-wider transition-all duration-300 bounce-in"
+            style="animation-delay: 0.2s"
+          >
+            <i class="fa-solid fa-phone text-sm"></i>
+            <span>0812-3456-7890</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="bg-bmw-dark border-t border-white/5">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <!-- Main Footer -->
+        <div
+          class="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"
+        >
+          <!-- Company -->
+          <div>
+            <a href="#" class="flex items-center gap-3 mb-6">
+              <div
+                class="w-10 h-10 rounded-full border-2 border-white/80 flex items-center justify-center"
+              >
+                <span class="text-xs font-black tracking-tighter leading-none"
+                  >RC</span
+                >
+              </div>
+              <span class="text-lg font-bold tracking-wide">RENTCAR</span>
+            </a>
+            <p class="text-white/30 text-sm leading-relaxed mb-6">
+              Premium car rental service. Melayani kebutuhan transportasi Anda
+              dengan standar tertinggi sejak 2018.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="#"
+                class="w-9 h-9 border border-white/10 flex items-center justify-center text-white/40 hover:border-bmw-blue hover:text-bmw-blue transition-all duration-300 text-sm"
+              >
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 border border-white/10 flex items-center justify-center text-white/40 hover:border-bmw-blue hover:text-bmw-blue transition-all duration-300 text-sm"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 border border-white/10 flex items-center justify-center text-white/40 hover:border-bmw-blue hover:text-bmw-blue transition-all duration-300 text-sm"
+              >
+                <i class="fa-brands fa-tiktok"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 border border-white/10 flex items-center justify-center text-white/40 hover:border-bmw-blue hover:text-bmw-blue transition-all duration-300 text-sm"
+              >
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3
+              class="text-[11px] font-semibold uppercase tracking-widest text-white/50 mb-6"
+            >
+              Navigasi
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#beranda"
+                  class="text-white/30 hover:text-white text-sm transition-colors duration-300"
+                  >Beranda</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#armada"
+                  class="text-white/30 hover:text-white text-sm transition-colors duration-300"
+                  >Armada</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#layanan"
+                  class="text-white/30 hover:text-white text-sm transition-colors duration-300"
+                  >Layanan</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#testimoni"
+                  class="text-white/30 hover:text-white text-sm transition-colors duration-300"
+                  >Testimoni</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  class="text-white/30 hover:text-white text-sm transition-colors duration-300"
+                  >FAQ</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h3
+              class="text-[11px] font-semibold uppercase tracking-widest text-white/50 mb-6"
+            >
+              Kontak
+            </h3>
+            <ul class="space-y-4 text-sm">
+              <li class="flex items-start gap-3">
+                <i
+                  class="fa-solid fa-location-dot text-bmw-blue mt-0.5 text-xs"
+                ></i>
+                <span class="text-white/30"
+                  >Jl. Raya Utama No. 123,<br />Jakarta Selatan, 12345</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fa-solid fa-phone text-bmw-blue text-xs"></i>
+                <a
+                  href="tel:+6281234567890"
+                  class="text-white/30 hover:text-white transition-colors duration-300"
+                  >0812-3456-7890</a
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <i class="fa-solid fa-envelope text-bmw-blue text-xs"></i>
+                <a
+                  href="mailto:info@rentcar.id"
+                  class="text-white/30 hover:text-white transition-colors duration-300"
+                  >info@rentcar.id</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Hours -->
+          <div>
+            <h3
+              class="text-[11px] font-semibold uppercase tracking-widest text-white/50 mb-6"
+            >
+              Jam Operasional
+            </h3>
+            <ul class="space-y-3 text-sm">
+              <li class="flex justify-between">
+                <span class="text-white/30">Senin - Jumat</span>
+                <span class="text-white/60 font-medium">08:00 - 21:00</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-white/30">Sabtu</span>
+                <span class="text-white/60 font-medium">08:00 - 18:00</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-white/30">Minggu</span>
+                <span class="text-white/60 font-medium">09:00 - 15:00</span>
+              </li>
+            </ul>
+            <div class="mt-6 flex items-center gap-2">
+              <span
+                class="w-2 h-2 bg-bmw-blue rounded-full animate-pulse"
+              ></span>
+              <span
+                class="text-bmw-blue text-xs font-medium uppercase tracking-wider"
+                >CS Online 24/7</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+          class="border-t border-white/5 py-6 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-white/20 text-xs">
+            &copy; 2024 RentCar. All rights reserved.
+          </p>
+          <div class="flex gap-8 text-xs">
+            <a
+              href="#"
+              class="text-white/20 hover:text-white/50 transition-colors duration-300"
+              >Syarat & Ketentuan</a
+            >
+            <a
+              href="#"
+              class="text-white/20 hover:text-white/50 transition-colors duration-300"
+              >Kebijakan Privasi</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-6 right-6 bg-bmw-blue hover:bg-blue-600 text-white w-11 h-11 flex items-center justify-center transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50"
+    >
+      <i class="fa-solid fa-arrow-up text-sm"></i>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
